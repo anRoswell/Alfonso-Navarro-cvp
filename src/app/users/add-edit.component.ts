@@ -9,7 +9,6 @@ import {
 import { first } from 'rxjs/operators';
 
 import { UserService, AlertService } from '../_services';
-import { MustMatch } from '../_helpers';
 
 @Component({ templateUrl: 'add-edit.component.html' })
 export class AddEditComponent implements OnInit {
@@ -78,6 +77,7 @@ export class AddEditComponent implements OnInit {
       .create(this.form.value)
       .pipe(first())
       .subscribe(() => {
+        console.log('Aqui llego');
         this.alertService.success('Usuario agregado', {
           keepAfterRouteChange: true,
         });

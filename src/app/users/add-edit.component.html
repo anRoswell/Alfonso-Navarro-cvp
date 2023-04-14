@@ -1,0 +1,73 @@
+<h3 *ngIf="isAddMode">Agregar Usuarios</h3>
+<h3 *ngIf="!isAddMode">Editar Usuarios</h3>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <div class="form-group col-5">
+      <label>Nombres</label>
+      <input
+        type="text"
+        formControlName="name"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+      />
+      <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+        <div *ngIf="f.name.errors.required">Name es requerido</div>
+      </div>
+    </div>
+    <div class="form-group col-7">
+      <label>Email</label>
+      <input
+        type="text"
+        formControlName="email"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+      />
+      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+        <div *ngIf="f.email.errors.required">Email es requerido</div>
+        <div *ngIf="f.email.errors.email">Email no es valido</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col">
+      <label>Género</label>
+      <select
+        formControlName="gender"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.gender.errors }"
+      >
+        <option value=""></option>
+        <option value="female">Femenino</option>
+        <option value="male">Masculino</option>
+      </select>
+      <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
+        <div *ngIf="f.gender.errors.required">Genero es requerido</div>
+      </div>
+    </div>
+    <div class="form-group col">
+      <label>Estado</label>
+      <select
+        formControlName="status"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f.status.errors }"
+      >
+        <option value=""></option>
+        <option value="active">Active</option>
+        <option value="inactive">Inactive</option>
+      </select>
+      <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+        <div *ngIf="f.status.errors.required">Estado es requerido</div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <button [disabled]="loading" class="btn btn-primary">
+      <span
+        *ngIf="loading"
+        class="spinner-border spinner-border-sm mr-1"
+      ></span>
+      Guardar
+    </button>
+    <a routerLink="/users" class="btn btn-link">Cancelar</a>
+  </div>
+</form>

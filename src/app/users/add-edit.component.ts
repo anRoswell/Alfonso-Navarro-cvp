@@ -91,7 +91,7 @@ export class AddEditComponent implements OnInit {
       .update(this.id, this.form.value)
       .pipe(first())
       .subscribe(() => {
-        this.alertService.success('User updated', {
+        this.alertService.success('Usuario actualizado', {
           keepAfterRouteChange: true,
         });
         this.router.navigate(['../../'], { relativeTo: this.route });
